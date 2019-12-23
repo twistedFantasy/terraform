@@ -8,8 +8,8 @@ variable "server_port" {
   default = 8080
 }
 
-resource "aws_security_group" "instance" {
-  name = "terraform-example-instance"
+resource "aws_security_group" "security_group_example" {
+  name = "terraform-security-group-example"
 
   ingress {
     from_port = var.server_port
@@ -19,10 +19,10 @@ resource "aws_security_group" "instance" {
   }
 }
 
-resource "aws_instance" "example" {
+resource "aws_instance" "instance_example" {
   ami = "ami-0c55b159cbfafe1f0"
   instance_type = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.instance.id]
+  vpc_security_group_ids = [aws_security_group.security_group_example.id]
 
   user_data = <<-EOF
               #!/bin/bash
@@ -36,6 +36,6 @@ resource "aws_instance" "example" {
 }
 
 output "public_ip" {
-  value = aws_instance.example.public_ip
+  value = aws_instance.instance_example.public_ip
   description = "The public IP of the web server"
 }
