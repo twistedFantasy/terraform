@@ -1,0 +1,9 @@
+# Various editor workspaces
+.idea
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
